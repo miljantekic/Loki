@@ -1,5 +1,5 @@
 {
-  "name": "loki",
+  "name": "loki-mock",
   "version": "0.0.1",
   "description": "API mocking service and interface for local development flows.",
   "main": "index.js",
