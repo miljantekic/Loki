@@ -1,6 +1,6 @@
 {
   "name": "loki",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "API mocking service and interface for local development flows.",
   "main": "index.js",
   "repository": "git@github.com:miljantekic/Loki.git",

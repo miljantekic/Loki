@@ -1,2 +1,5 @@
-console.log('Loki works!');
-
+exports.module = {
+    test: function () {
+        console.log('Loki');
+    }
+};
