@@ -1,8 +1,14 @@
 var fs = require('fs');
+var Response = require('./models/Response');
 
 var Responses = {};
 var RESPONSES_DIR = 'responses';
 
+/**
+ * @param {string} responseId
+ * @param {Object} config
+ * @returns {null | Response}
+ */
 Responses.findResponse = function(responseId, config) {
     var responseFilePath = config.resourcesPath + RESPONSES_DIR + '/' + responseId + '.json';
     var responseFileContent = '';
@@ -13,7 +19,7 @@ Responses.findResponse = function(responseId, config) {
         return null;
     }
 
-    return JSON.parse(responseFileContent);
+    return new Response(JSON.parse(responseFileContent));
 };
 
 module.exports = Responses;
