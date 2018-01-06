@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:miljantekic/Loki.git",
   "author": "Miljan Tekic <miljan.tekic@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
 }
