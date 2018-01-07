@@ -1,0 +1,7 @@
+.idea/
+node_modules/
+src/client/node_modules/
+src/client/src/
+src/client/.gitignore
+src/client/package.json
+src/client/yarn.lock
