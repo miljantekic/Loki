@@ -1,5 +1,5 @@
-
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var Endpoints = require('./Endpoints');
 var Responses = require('./Responses');
@@ -30,11 +30,36 @@ function setupServer(server, config) {
 
         res.status(response.statusCode).send(response.responseBody);
     });
+
+    server.post('/api/endpoint/create', function (request, response) {
+        var createdEndpoint = Endpoints.createEndpoint(request.body, config);
+
+        console.log('Created endpoint with id:', createdEndpoint.id);
+
+        response.send({
+            ok: true,
+            endpoint: createdEndpoint
+        });
+    });
+
+    server.post('/api/endpoint/:id', function (request, response) {
+        var endpoint = Endpoints.getEndpoint(request.params.id, config);
+
+        if (!endpoint) {
+            response.status(404).send('Endpoint does not exist!');
+
+            return;
+        }
+
+        response.send(endpoint);
+    });
 }
 
 
 module.exports.startServer = function () {
     var server = express();
+
+    server.use(bodyParser.json());
 
     setupServer(server, defaultConfig);
 

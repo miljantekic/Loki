@@ -20,6 +20,9 @@ function Endpoint(endpoint) {
 
     /** {string} */
     this.activeResponse = endpoint.activeResponse;
+
+    /** {string} */
+    this.createdAt = endpoint.createdAt;
 }
 
 /**

@@ -7,7 +7,9 @@
   "author": "Miljan Tekic <miljan.tekic@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "uuid": "^3.1.0"
   }
 }
