@@ -33,6 +33,30 @@ Endpoints.createEndpoint = function (endpoint, config) {
 };
 
 /**
+ * @param {string} endpointId
+ * @param {string} responseId
+ * @param {boolean} setAsActive
+ * @param {Object} config
+ * @returns {Endpoint}
+ */
+Endpoints.addResponseToEndpoint = function (endpointId, responseId, setAsActive, config) {
+    var resourcePath = getResourcePath(config);
+    var filename = endpointId + '.json';
+
+    var endpoint = new Endpoint(JSON.parse(fs.readFileSync(resourcePath + '/' + filename, 'utf8')));
+
+    endpoint.responses.push(responseId);
+
+    if (setAsActive || endpoint.responses.length === 1) {
+        endpoint.activeResponse = responseId;
+    }
+
+    fs.writeFileSync(resourcePath + '/' + filename, JSON.stringify(endpoint, null, 2), 'utf8');
+
+    return endpoint;
+};
+
+/**
  * @param {Object} endpointId
  * @param {Object} config
  * @returns {Endpoint}

@@ -16,7 +16,7 @@ function Endpoint(endpoint) {
     this.url = endpoint.url;
 
     /** {string[]} */
-    this.responses = endpoint.responses;
+    this.responses = endpoint.responses || [];
 
     /** {string} */
     this.activeResponse = endpoint.activeResponse;

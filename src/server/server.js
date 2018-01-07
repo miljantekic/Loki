@@ -53,6 +53,27 @@ function setupServer(server, config) {
 
         response.send(endpoint);
     });
+
+    server.post('/api/response/create', function (request, response) {
+        var createdResponse = Responses.createEndpoint(request.body.response, config);
+
+        console.log('Created response with id:', createdResponse.id);
+
+        var updatedEndpoint = Endpoints.addResponseToEndpoint(
+            request.body.endpoint,
+            createdResponse.id,
+            !!request.body.active,
+            config
+        );
+
+        console.log('Added response to endpoint:', updatedEndpoint.id);
+
+        response.send({
+            ok: true,
+            response: createdResponse,
+            endpoint: updatedEndpoint
+        });
+    });
 }
 
 
