@@ -3,7 +3,10 @@ var server = require('./src/server/server');
 
 var Loki = {};
 
-Loki.start = function () {
+/**
+ * @param {Object} [config]
+ */
+Loki.start = function (config) {
     server.startServer();
     client.renderApplication();
 };

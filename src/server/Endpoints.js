@@ -6,12 +6,22 @@ var Endpoints = {};
 var ENDPOINTS_DIR = 'endpoints';
 
 /**
+ * @param {Endpoint[]} endpoints
+ * @param {string} url
+ * @param {string} method
+ * @returns {null | Endpoint}
+ */
+Endpoints.findEndpointWithParams = function (endpoints, url, method) {
+    return null;
+};
+
+/**
  * @param {string} url
  * @param {string} method
  * @param {object} config
  * @returns {null | Endpoint}
  */
-Endpoints.findEndpoint = function(url, method, config) {
+Endpoints.findEndpoint = function (url, method, config) {
     var path = config.resourcesPath + ENDPOINTS_DIR;
 
     var endpointsFiles = fs.readdirSync(path);
@@ -24,6 +34,10 @@ Endpoints.findEndpoint = function(url, method, config) {
         url: url,
         method: method
     });
+
+    if (!endpoint) {
+        endpoint = Endpoints.findEndpointWithParams(endpoints, url, method);
+    }
 
     if (!endpoint) {
         return null;

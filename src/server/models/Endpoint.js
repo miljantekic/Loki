@@ -22,4 +22,12 @@ function Endpoint(endpoint) {
     this.activeResponse = endpoint.activeResponse;
 }
 
+/**
+ * @param {string} url
+ * @returns {Object}
+ */
+Endpoint.prototype.getEndpointParams = function (url) {
+    return {};
+};
+
 module.exports = Endpoint;
