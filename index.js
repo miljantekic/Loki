@@ -7,8 +7,11 @@ var Loki = {};
  * @param {Object} [config]
  */
 Loki.start = function (config) {
-    server.startServer();
-    client.renderApplication();
+    var serverCallback = function () {
+        client.renderApplication();
+    };
+
+    server.startServer(config, serverCallback);
 };
 
 module.exports = Loki;

@@ -76,8 +76,11 @@ function setupServer(server, config) {
     });
 }
 
-
-module.exports.startServer = function () {
+/**
+ * @param {Object} config
+ * @param {Function} callback
+ */
+module.exports.startServer = function (config, callback) {
     var server = express();
 
     server.use(bodyParser.json());
@@ -86,5 +89,6 @@ module.exports.startServer = function () {
 
     server.listen(defaultConfig.port, function () {
         console.log('Server has been started on port ' + defaultConfig.port + '');
+        callback();
     });
 };
