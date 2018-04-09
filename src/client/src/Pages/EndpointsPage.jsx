@@ -28,7 +28,6 @@ class EndpointsPage extends Component {
 
         return (
             <Container className="EndpointsPage">
-                <div>{loaded ? 'asd' : 'asd1'}</div>
                 { loaded ?
                     <ListGroup>
                         {endpoints.map(endpoint => (
