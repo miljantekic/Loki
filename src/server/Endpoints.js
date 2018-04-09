@@ -62,7 +62,17 @@ Endpoints.addResponseToEndpoint = function (endpointId, responseId, setAsActive,
  * @returns {Endpoint}
  */
 Endpoints.getEndpoint = function (endpointId, config) {
+    let endpoints = Endpoints.getEndpoints(config);
 
+    let endpoint = _.find(endpoints, {
+        id: endpointId
+    });
+
+    if (!endpoint) {
+        return null;
+    }
+
+    return endpoint;
 };
 
 /**

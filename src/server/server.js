@@ -46,6 +46,24 @@ function setupServer(server, config) {
         });
     });
 
+    server.get('/api/endpoint/:id', function (request, response) {
+        let endpoint = Endpoints.getEndpoint(request.params.id, config);
+
+        console.log(request.params.id);
+
+        if (!endpoint) {
+            return response.send({
+                ok: false,
+                message: 'Endpoint doesn\'t exist'
+            });
+        }
+
+        response.send({
+            ok: true,
+            endpoint: endpoint
+        });
+    });
+
     server.post('/api/endpoint/create', function (request, response) {
         let existingEndpoint = Endpoints.findEndpoint(request.body.url, request.body.method, config);
 
