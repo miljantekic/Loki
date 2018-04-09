@@ -47,7 +47,18 @@ function setupServer(server, config) {
     });
 
     server.post('/api/endpoint/create', function (request, response) {
-        var createdEndpoint = Endpoints.createEndpoint(request.body, config);
+        let existingEndpoint = Endpoints.findEndpoint(request.body.url, request.body.method, config);
+
+        if (existingEndpoint) {
+            console.log('Endpoint with this method and URL already exists: ', existingEndpoint.id);
+
+            return response.send({
+                ok: false,
+                message: 'Endpoint with this method and URL already exists.'
+            })
+        }
+
+        let createdEndpoint = Endpoints.createEndpoint(request.body, config);
 
         console.log('Created endpoint with id:', createdEndpoint.id);
 

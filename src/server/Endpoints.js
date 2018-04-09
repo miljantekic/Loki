@@ -95,16 +95,12 @@ Endpoints.findEndpointWithParams = function (endpoints, url, method) {
  * @returns {null | Endpoint}
  */
 Endpoints.findEndpoint = function (url, method, config) {
-    var endpoints = Endpoints.getEndpoints(config);
+    let endpoints = Endpoints.getEndpoints(config);
 
-    var endpoint = _.find(endpoints, {
+    let endpoint = _.find(endpoints, {
         url: url,
         method: method
     });
-
-    if (!endpoint) {
-        endpoint = Endpoints.findEndpointWithParams(endpoints, url, method);
-    }
 
     if (!endpoint) {
         return null;
