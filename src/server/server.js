@@ -31,6 +31,15 @@ function setupServer(server, config) {
         res.status(response.statusCode).send(response.responseBody);
     });
 
+    server.get('/api/endpoints', function (request, response) {
+        var endpoints = Endpoints.getEndpoints(config);
+
+        response.send({
+            ok: true,
+            endpoints: endpoints
+        });
+    });
+
     server.post('/api/endpoint/create', function (request, response) {
         var createdEndpoint = Endpoints.createEndpoint(request.body, config);
 

@@ -66,6 +66,19 @@ Endpoints.getEndpoint = function (endpointId, config) {
 };
 
 /**
+ * @param {Object} config
+ * @returns {Endpoint[]}
+ */
+Endpoints.getEndpoints = function (config) {
+    var path = getResourcePath(config);
+    var endpointsFiles = fs.readdirSync(path);
+
+    return _.map(endpointsFiles, function (endpointFile) {
+        return new Endpoint(JSON.parse(fs.readFileSync(path + '/' + endpointFile, 'utf8')));
+    });
+};
+
+/**
  * @param {Endpoint[]} endpoints
  * @param {string} url
  * @param {string} method
@@ -82,11 +95,7 @@ Endpoints.findEndpointWithParams = function (endpoints, url, method) {
  * @returns {null | Endpoint}
  */
 Endpoints.findEndpoint = function (url, method, config) {
-    var path = getResourcePath(config);
-    var endpointsFiles = fs.readdirSync(path);
-    var endpoints = _.map(endpointsFiles, function (endpointFile) {
-        return new Endpoint(JSON.parse(fs.readFileSync(path + '/' + endpointFile, 'utf8')));
-    });
+    var endpoints = Endpoints.getEndpoints(config);
 
     var endpoint = _.find(endpoints, {
         url: url,
