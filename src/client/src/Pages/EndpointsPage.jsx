@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import { Container, ListGroup, ListGroupItem, Badge, Row, Col } from 'reactstrap';
+import { Container, ListGroup, Badge, Row, Col, Button } from 'reactstrap';
 
-import Api from '../Utilities/Api'
+import Api from '../Utilities/Api';
 
 class EndpointsPage extends Component {
     constructor(props) {
@@ -28,6 +28,13 @@ class EndpointsPage extends Component {
 
         return (
             <Container className="EndpointsPage">
+                <Row className="mb-4 justify-content-end">
+                    <Col xs="auto" className="float-right">
+                        <Link to="/endpoint/create">
+                            <Button color="success">Create Endpoint</Button>
+                        </Link>
+                    </Col>
+                </Row>
                 { loaded ?
                     <ListGroup>
                         {endpoints.map(endpoint => (
